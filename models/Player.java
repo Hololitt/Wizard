@@ -1,6 +1,6 @@
 package JC.Training.src.WizardGame.models;
 
-import JC.Training.src.WizardGame.IDGenerator;
+import JC.Training.src.WizardGame.handlers.IDGenerator;
 
 public class Player {
     private final String id;

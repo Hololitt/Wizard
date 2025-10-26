@@ -1,7 +1,7 @@
 package JC.Training.src.WizardGame.strategies;
 
-import JC.Training.src.WizardGame.CardManager;
-import JC.Training.src.WizardGame.CardType;
+import JC.Training.src.WizardGame.handlers.CardManager;
+import JC.Training.src.WizardGame.enums.CardType;
 import JC.Training.src.WizardGame.DTOs.BeatCardContextDTO;
 import JC.Training.src.WizardGame.DTOs.CreateTrickBidsContextDTO;
 import JC.Training.src.WizardGame.DTOs.DropCardContextDTO;
@@ -20,7 +20,7 @@ public class Version2Strategy implements GameStrategy{
         RoundContext roundContext = dropCardContextDTO.roundContext();
         GameContextDTO gameContextDTO = dropCardContextDTO.gameContextDTO();
         Integer ownTrickWinsAmount = roundContext.fullTrickWins().get(ownId);
-        Integer ownTrickBidsAmount = roundContext.fullTrickBids().get(ownId);
+        Integer ownTrickBidsAmount = roundContext.fullTrickBids().get(ownId).trickBid();
 
         Set<Card> ownCards = dropCardContextDTO.ownCards();
         Card dropCard;

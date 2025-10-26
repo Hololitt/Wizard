@@ -1,7 +1,7 @@
 package JC.Training.src.WizardGame.contexts;
 
-import JC.Training.src.WizardGame.CardType;
-import JC.Training.src.WizardGame.IDGenerator;
+import JC.Training.src.WizardGame.handlers.GameManager;
+import JC.Training.src.WizardGame.handlers.IDGenerator;
 import JC.Training.src.WizardGame.models.Card;
 import JC.Training.src.WizardGame.models.GameBot;
 
@@ -22,30 +22,9 @@ public class GameContext {
         this.gameBots = gameBots;
         this.totalRoundAmount = totalRoundsAmount;
        gameId = IDGenerator.getNextGameId();
-       allCards = initializeAllCards();
+       allCards = GameManager.getAllPossibleCards();
     }
 
-private Set<Card> initializeAllCards(){
-        Set<Card> cards = new HashSet<>();
-
-        for(int i = 1; i <= 13; i++){
-            Card blueCard = new Card(CardType.BLUE, i);
-            Card redCard = new Card(CardType.RED, i);
-            Card greenCard = new Card(CardType.GREEN, i);
-            Card yellowCard = new Card(CardType.YELLOW, i);
-
-                    cards.add(blueCard);
-                    cards.add(redCard);
-                    cards.add(greenCard);
-                    cards.add(yellowCard);
-        }
-
-        for(int i = 1; i<=4; i++){
-            cards.add(new Card(CardType.JESTER));
-            cards.add(new Card(CardType.WIZARD, 14));
-        }
-        return cards;
-}
 
 public void updateCurrentRoundContext(RoundContext newRoundContext){
         roundContexts.pop();
@@ -97,4 +76,5 @@ public void updateBotScores(Map<String, Integer> botScores){
     public void setCurrentRoundNumber(int currentRoundNumber){
         this.currentRoundNumber = currentRoundNumber;
     }
+
 }

@@ -1,7 +1,7 @@
 package JC.Training.src.WizardGame.strategies;
 
-import JC.Training.src.WizardGame.CardManager;
-import JC.Training.src.WizardGame.CardType;
+import JC.Training.src.WizardGame.handlers.CardManager;
+import JC.Training.src.WizardGame.enums.CardType;
 import JC.Training.src.WizardGame.DTOs.BeatCardContextDTO;
 import JC.Training.src.WizardGame.DTOs.CreateTrickBidsContextDTO;
 import JC.Training.src.WizardGame.DTOs.DropCardContextDTO;
@@ -83,7 +83,7 @@ public class ChatGPTV5 implements GameStrategy {
         int players = ctx.gameContextDTO().botAmount();
         int roundNumber = ctx.gameContextDTO().currentRoundNumber();
         int myWins = round.fullTrickWins().getOrDefault(ownId, 0);
-        int myBids = round.fullTrickBids().getOrDefault(ownId, 0);
+        int myBids = round.fullTrickBids().get(ownId).trickBid();
         int cardsPerPlayer = roundNumber;
 
         // если уже добрал — играем карту с минимальной вероятностью взять
@@ -117,7 +117,7 @@ public class ChatGPTV5 implements GameStrategy {
         int cardsPerPlayer = round.number();
 
         int myWins = round.fullTrickWins().getOrDefault(ownId, 0);
-        int myBids = round.fullTrickBids().getOrDefault(ownId, 0);
+        int myBids = round.fullTrickBids().get(ownId).trickBid();
 
         Card leading = CardManager.defineLeadingCard(new HashSet<>(trick.responses()), firstDropped, trumpType);
 

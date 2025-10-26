@@ -1,7 +1,7 @@
 package JC.Training.src.WizardGame.strategies;
 
-import JC.Training.src.WizardGame.CardManager;
-import JC.Training.src.WizardGame.CardType;
+import JC.Training.src.WizardGame.handlers.CardManager;
+import JC.Training.src.WizardGame.enums.CardType;
 import JC.Training.src.WizardGame.DTOs.BeatCardContextDTO;
 import JC.Training.src.WizardGame.DTOs.CreateTrickBidsContextDTO;
 import JC.Training.src.WizardGame.DTOs.DropCardContextDTO;

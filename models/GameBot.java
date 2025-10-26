@@ -1,6 +1,6 @@
 package JC.Training.src.WizardGame.models;
 
-import JC.Training.src.WizardGame.CardType;
+import JC.Training.src.WizardGame.enums.CardType;
 import JC.Training.src.WizardGame.DTOs.*;
 import JC.Training.src.WizardGame.contexts.RoundContext;
 import JC.Training.src.WizardGame.strategies.GameStrategy;
@@ -10,7 +10,6 @@ import java.util.*;
 public class GameBot {
     private final String gameBotId;
 
-    private final Set<Card> usedCards = new HashSet<>();
 private Set<Card> cards = new HashSet<>();
 private final GameStrategy gameStrategy;
 

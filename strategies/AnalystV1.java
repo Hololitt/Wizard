@@ -1,7 +1,7 @@
 package JC.Training.src.WizardGame.strategies;
 
-import JC.Training.src.WizardGame.CardManager;
-import JC.Training.src.WizardGame.CardType;
+import JC.Training.src.WizardGame.handlers.CardManager;
+import JC.Training.src.WizardGame.enums.CardType;
 import JC.Training.src.WizardGame.DTOs.*;
 import JC.Training.src.WizardGame.contexts.RoundContext;
 import JC.Training.src.WizardGame.models.Card;
@@ -12,7 +12,17 @@ import java.util.List;
 import java.util.Set;
 
 public class AnalystV1 implements GameStrategy{
-    private final Set<Card> takingTrickCards = new HashSet<>();
+
+    public AnalystV1(Set<Card> memory){
+        memory.clear();
+        takingTrickCards = memory;
+    }
+
+    public AnalystV1(){
+        takingTrickCards = new HashSet<>();
+    }
+
+    private Set<Card> takingTrickCards;
 
     @Override
     public Card dropCard(DropCardContextDTO dropCardContextDTO) {
@@ -20,7 +30,7 @@ public class AnalystV1 implements GameStrategy{
         RoundContext roundContext = dropCardContextDTO.roundContext();
 
         Integer ownTrickWinsAmount = roundContext.fullTrickWins().get(ownId);
-        Integer ownTrickBidsAmount = roundContext.fullTrickBids().get(ownId);
+        Integer ownTrickBidsAmount = roundContext.fullTrickBids().get(ownId).trickBid();
 
         Set<Card> ownCards = dropCardContextDTO.ownCards();
         Card dropCard;
@@ -84,7 +94,7 @@ public class AnalystV1 implements GameStrategy{
         String ownId = beatCardContextDTO.ownId();
 
         Integer ownTrickWinsAmount = roundContext.fullTrickWins().get(ownId);
-        Integer ownTrickBidsAmount = roundContext.fullTrickBids().get(ownId);
+        Integer ownTrickBidsAmount = roundContext.fullTrickBids().get(ownId).trickBid();
 
         Card beatCard = null;
 
@@ -262,5 +272,9 @@ boolean isCoefficientBiggerThanZero = coefficient > 0;
 
     private void cleanUpTakingTrickCards(){
         takingTrickCards.clear();
+    }
+
+    public void updateMemory(Set<Card> takingTrickCards){
+        this.takingTrickCards = takingTrickCards;
     }
 }

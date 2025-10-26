@@ -1,20 +1,20 @@
 package JC.Training.src.WizardGame.models;
 
-import JC.Training.src.WizardGame.CardType;
+import JC.Training.src.WizardGame.enums.CardType;
+
+import java.util.Objects;
 
 public class Card {
+    private final String id;
     private final CardType cardType;
-    private int number;
+    private final int number;
 
 
-    public Card(CardType cardType, int number){
+    public Card(String id, CardType cardType, int number){
         this.cardType = cardType;
         this.number = number;
+        this.id = id;
     }
-
-public Card(CardType cardType){
-        this.cardType = cardType;
-}
 
     public CardType getType() {
         return cardType;
@@ -26,5 +26,20 @@ public Card(CardType cardType){
 
     public String toString(){
         return cardType + " " + number;
+    }
+
+    public String getId(){
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Card card)) return false;
+        return Objects.equals(id, card.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

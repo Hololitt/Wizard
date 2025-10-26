@@ -1,7 +1,7 @@
 package JC.Training.src.WizardGame.strategies;
 
-import JC.Training.src.WizardGame.CardManager;
-import JC.Training.src.WizardGame.CardType;
+import JC.Training.src.WizardGame.handlers.CardManager;
+import JC.Training.src.WizardGame.enums.CardType;
 import JC.Training.src.WizardGame.DTOs.*;
 import JC.Training.src.WizardGame.contexts.RoundContext;
 import JC.Training.src.WizardGame.models.Card;
@@ -125,7 +125,7 @@ public class MetaCrusherV1 implements GameStrategy {
         Set<Card> hand = ctx.ownCards();
 
         int wins = round.fullTrickWins().getOrDefault(ownId, 0);
-        int bid = round.fullTrickBids().getOrDefault(ownId, 0);
+        int bid = round.fullTrickBids().get(ownId).trickBid();
 
         // Если уже взяли столько штихов, сколько заявили — слить: минимально ценный из тех, которые не убьют штих
         if (wins >= bid) {
@@ -147,7 +147,7 @@ public class MetaCrusherV1 implements GameStrategy {
         RoundContext round = ctx.roundContext();
 
         int wins = round.fullTrickWins().getOrDefault(ownId, 0);
-        int bid = round.fullTrickBids().getOrDefault(ownId, 0);
+        int bid = round.fullTrickBids().get(ownId).trickBid();
 
         Set<CardType> allowedTypes = ctx.allowedResponses();
         Set<Card> hand = ctx.ownCards();

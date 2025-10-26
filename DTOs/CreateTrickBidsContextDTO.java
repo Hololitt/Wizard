@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.Set;
 
 public record CreateTrickBidsContextDTO(GameContextDTO gameContextDTO,
-                                        Map<String, Integer> trickBids,
+                                        Map<String, TrickBidDTO> trickBids,
                                         Card trumpCard,
-                                        Set<Card> ownCards) {
+                                        Set<Card> ownCards,
+                                        String dealerId,
+                                        String ownID) {
 }

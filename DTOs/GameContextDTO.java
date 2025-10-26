@@ -1,6 +1,10 @@
 package JC.Training.src.WizardGame.DTOs;
 
-import java.util.Map;
+import JC.Training.src.WizardGame.contexts.RoundContext;
 
-public record GameContextDTO(int totalRoundAmount, int currentRoundNumber, Map<String, Integer> botScores, int botAmount) {
+import java.util.Map;
+import java.util.Stack;
+
+public record GameContextDTO(int totalRoundAmount, int currentRoundNumber,
+                             Map<String, Integer> botScores, Stack<RoundContext> roundContexts, int botAmount) {
 }

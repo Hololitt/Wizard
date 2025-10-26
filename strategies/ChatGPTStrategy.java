@@ -1,7 +1,7 @@
 package JC.Training.src.WizardGame.strategies;
 
 
-import JC.Training.src.WizardGame.CardType;
+import JC.Training.src.WizardGame.enums.CardType;
 import JC.Training.src.WizardGame.DTOs.BeatCardContextDTO;
 import JC.Training.src.WizardGame.DTOs.CreateTrickBidsContextDTO;
 import JC.Training.src.WizardGame.DTOs.DropCardContextDTO;
@@ -42,7 +42,7 @@ public class ChatGPTStrategy implements GameStrategy{
 
     @Override
     public Card dropCard(DropCardContextDTO ctx) {
-        int ownBid = ctx.roundContext().fullTrickBids().getOrDefault(ctx.ownId(), 0);
+        int ownBid = ctx.roundContext().fullTrickBids().get(ctx.ownId()).trickBid();
         int ownWins = ctx.roundContext().fullTrickWins().getOrDefault(ctx.ownId(), 0);
         Card trumpCard = ctx.roundContext().trumpCard();
         Set<Card> ownCards = ctx.ownCards();
@@ -58,7 +58,7 @@ public class ChatGPTStrategy implements GameStrategy{
     @Override
     public Card beatCard(BeatCardContextDTO ctx) {
         Card cardToBeat = ctx.trickContextDTO().firstDroppedCard();
-        int ownBid = ctx.roundContext().fullTrickBids().getOrDefault(ctx.ownId(), 0);
+        int ownBid = ctx.roundContext().fullTrickBids().get(ctx.ownId()).trickBid();
         int ownWins = ctx.roundContext().fullTrickWins().getOrDefault(ctx.ownId(), 0);
         Card trumpCard = ctx.roundContext().trumpCard();
         Set<Card> hand = ctx.ownCards();

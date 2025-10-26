@@ -1,7 +1,7 @@
 package JC.Training.src.WizardGame.strategies;
 
-import JC.Training.src.WizardGame.CardManager;
-import JC.Training.src.WizardGame.CardType;
+import JC.Training.src.WizardGame.handlers.CardManager;
+import JC.Training.src.WizardGame.enums.CardType;
 import JC.Training.src.WizardGame.DTOs.BeatCardContextDTO;
 import JC.Training.src.WizardGame.DTOs.CreateTrickBidsContextDTO;
 import JC.Training.src.WizardGame.DTOs.DropCardContextDTO;
@@ -56,7 +56,7 @@ public class ChatGPTV2Strategy implements GameStrategy{
         RoundContext round = ctx.roundContext();
 
         int ownWins = round.fullTrickWins().getOrDefault(ownId, 0);
-        int ownBid = round.fullTrickBids().getOrDefault(ownId, 0);
+        int ownBid = round.fullTrickBids().get(ownId).trickBid();
 
         Set<Card> ownCards = ctx.ownCards();
         Card trumpCard = round.trumpCard();
@@ -75,7 +75,7 @@ public class ChatGPTV2Strategy implements GameStrategy{
         RoundContext round = ctx.roundContext();
 
         int ownWins = round.fullTrickWins().getOrDefault(ownId, 0);
-        int ownBid = round.fullTrickBids().getOrDefault(ownId, 0);
+        int ownBid = round.fullTrickBids().get(ownId).trickBid();
         Card trumpCard = round.trumpCard();
 
         Card toBeat = ctx.trickContextDTO().firstDroppedCard();

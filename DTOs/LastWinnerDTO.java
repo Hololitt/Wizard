@@ -1,13 +1,13 @@
 package JC.Training.src.WizardGame.DTOs;
 
-import JC.Training.src.WizardGame.LastWinnerExists;
+import JC.Training.src.WizardGame.enums.LastWinnerExists;
 
 public class LastWinnerDTO {
     private LastWinnerExists lastWinnerExists;
     private String lastWinnerId;
 
     public LastWinnerDTO(){
-        lastWinnerExists = LastWinnerExists.YES;
+        lastWinnerExists = LastWinnerExists.NO;
     }
 
 public LastWinnerDTO(LastWinnerExists lastWinnerExists, String lastWinnerId){
@@ -18,8 +18,11 @@ public LastWinnerDTO(LastWinnerExists lastWinnerExists, String lastWinnerId){
     public void setLastWinnerExists(LastWinnerExists lastWinnerExists){
         this.lastWinnerExists = lastWinnerExists;
     }
-    public void setLastWinnerId(String lastWinnerId){
-        this.lastWinnerId = lastWinnerId;
+
+
+    public void setLastWinnerDTO(LastWinnerDTO lastWinnerDTO){
+        lastWinnerExists = lastWinnerDTO.lastWinnerExists;
+        lastWinnerId = lastWinnerDTO.lastWinnerId;
     }
 
     public LastWinnerExists getLastWinnerExists() {
